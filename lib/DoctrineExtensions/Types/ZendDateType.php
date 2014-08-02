@@ -60,11 +60,12 @@ class ZendDateType extends Type
         $dateTimeFormatString = \Zend_Locale_Format::convertPhpToIsoFormat(
             $platform->getDateTimeFormatString()
         );
-        
+
         $val = new \Zend_Date($value, $dateTimeFormatString);
         if (!$val) {
             throw ConversionException::conversionFailed($value, $this->getName());
         }
+
         return $val;
     }
 }

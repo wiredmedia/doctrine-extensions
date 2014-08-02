@@ -19,11 +19,11 @@ use Doctrine\ORM\Query\AST\Functions\FunctionNode,
 
 /**
  * Usage: IFNULL(expr1, expr2)
- * 
+ *
  * If expr1 is not NULL, IFNULL() returns expr1; otherwise it returns expr2.
  * IFNULL() returns a numeric or string value, depending on the context in
  * which it is used.
- * 
+ *
  * @author  Andrew Mackrodt <andrew@ajmm.org>
  * @version 2011.06.12
  */

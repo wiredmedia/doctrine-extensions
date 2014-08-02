@@ -24,7 +24,6 @@ class Asin extends FunctionNode
 
     public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
     {
-
         return 'ASIN(' . $sqlWalker->walkSimpleArithmeticExpression(
                 $this->arithmeticExpression
         ) . ')';

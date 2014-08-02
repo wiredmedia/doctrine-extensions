@@ -34,19 +34,23 @@ class ResourceVersion
         $this->snapshotDate     = new \DateTime("now");
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getResourceName() {
+    public function getResourceName()
+    {
         return $this->resourceName;
     }
 
-    public function getResourceId() {
+    public function getResourceId()
+    {
         return $this->resourceId;
     }
 
-    public function getVersionedData($key = null) {
+    public function getVersionedData($key = null)
+    {
         if ($key !== null) {
             return $this->versionedData[$key];
         } else {
@@ -54,11 +58,13 @@ class ResourceVersion
         }
     }
 
-    public function getVersion() {
+    public function getVersion()
+    {
         return $this->version;
     }
 
-    public function getSnapshotDate() {
+    public function getSnapshotDate()
+    {
         return $this->snapshotDate;
     }
 }

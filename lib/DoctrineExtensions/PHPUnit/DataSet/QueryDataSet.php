@@ -15,7 +15,7 @@ namespace DoctrineExtensions\PHPUnit\DataSet;
 
 class QueryDataSet extends \PHPUnit_Extensions_Database_DataSet_QueryDataSet
 {
-    public function addTable($tableName, $query = NULL)
+    public function addTable($tableName, $query = null)
     {
         if ($query === NULL) {
             $query = 'SELECT * FROM ' . $tableName;

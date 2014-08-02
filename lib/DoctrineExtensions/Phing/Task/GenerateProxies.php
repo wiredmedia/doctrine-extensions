@@ -13,7 +13,7 @@
 
 namespace DoctrineExtensions\Phing\Task;
 
-require_once "AbstractDoctrineTask.php";
+require_once 'AbstractDoctrineTask.php';
 
 class GenerateProxies extends AbstractDoctrineTask
 {

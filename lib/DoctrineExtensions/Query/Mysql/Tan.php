@@ -24,7 +24,6 @@ class Tan extends FunctionNode
 
     public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
     {
-
         return 'TAN(' . $sqlWalker->walkSimpleArithmeticExpression(
                 $this->arithmeticExpression
         ) . ')';

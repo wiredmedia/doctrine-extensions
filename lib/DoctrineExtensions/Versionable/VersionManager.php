@@ -30,8 +30,8 @@ class VersionManager
 
     /**
      * Return all versions of an versionable entity.
-     * 
-     * @param Versionable $resource
+     *
+     * @param  Versionable       $resource
      * @return ResourceVersion[]
      */
     public function getVersions(Versionable $resource)
@@ -48,15 +48,16 @@ class VersionManager
         $query->setParameter(2, $resourceId);
 
         $newVersions = array();
-        foreach($query->getResult() AS $version) {
+        foreach ($query->getResult() as $version) {
             $newVersions[$version->getVersion()] = $version;
         }
+
         return $newVersions;
     }
 
     /**
      * @param Versionable $resource
-     * @param int $toVersionNum
+     * @param int         $toVersionNum
      */
     public function revert(Versionable $resource, $toVersionNum)
     {
@@ -68,7 +69,7 @@ class VersionManager
         $version = $versions[$toVersionNum];
 
         $versionableClass = $this->_em->getClassMetadata(get_class($resource));
-        foreach ($version->getVersionedData() AS $k => $v) {
+        foreach ($version->getVersionedData() as $k => $v) {
             $versionableClass->reflFields[$k]->setValue($resource, $v);
         }
 

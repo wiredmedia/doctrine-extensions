@@ -46,7 +46,7 @@ class OrmTestCaseTest extends OrmTestCase
         $config->setQueryCacheImpl(new \Doctrine\Common\Cache\ArrayCache);
         $config->setProxyDir(__DIR__ . '/Proxies');
         $config->setProxyNamespace('DoctrineExtensions\PHPUnit\Proxies');
-        
+
         $eventManager = new \Doctrine\Common\EventManager();
         $eventManager->addEventListener(array("preTestSetUp", "postTestSetUp"), $this);
 

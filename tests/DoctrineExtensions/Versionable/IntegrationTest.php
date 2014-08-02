@@ -24,7 +24,7 @@ class IntegrationTest extends OrmTestCase
         $this->assertEquals(1, count($versions));
 
         $aVersion = $versions[1];
-        
+
         /* @var $aVersion DoctrineExtensions\Versionable\Entity\ResourceVersion */
         $this->assertType('DoctrineExtensions\Versionable\Entity\ResourceVersion', $aVersion);
         $this->assertEquals("DoctrineExtensions\Versionable\BlogPost", $aVersion->getResourceName());

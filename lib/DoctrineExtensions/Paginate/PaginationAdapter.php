@@ -65,8 +65,8 @@ class PaginationAdapter implements \Zend_Paginator_Adapter_Interface
     /**
      * Constructor
      *
-     * @param Query $query
-     * @param string $ns Namespace to prevent named parameter conflicts
+     * @param Query  $query
+     * @param string $ns    Namespace to prevent named parameter conflicts
      */
     public function __construct(Query $query, $ns = 'pgid')
     {
@@ -90,14 +90,14 @@ class PaginationAdapter implements \Zend_Paginator_Adapter_Interface
      * Can be either an integer, or a Doctrine\ORM\Query object
      * which returns the count
      *
-     * @param Query|integer $rowCount
+     * @param  Query|integer $rowCount
      * @return void
      */
     public function setRowCount($rowCount)
     {
         if ($rowCount instanceof Query) {
             $this->rowCount = $rowCount->getSingleScalarResult();
-        } else if (is_integer($rowCount)) {
+        } elseif (is_integer($rowCount)) {
             $this->rowCount = $rowCount;
         } else {
             throw new \InvalidArgumentException("Invalid row count");
@@ -109,7 +109,7 @@ class PaginationAdapter implements \Zend_Paginator_Adapter_Interface
      *
      * Parameters will be in the format 'namespace_1' ... 'namespace_N'
      *
-     * @param string $ns
+     * @param  string $ns
      * @return void
      * @author David Abdemoulaie
      */
@@ -121,8 +121,8 @@ class PaginationAdapter implements \Zend_Paginator_Adapter_Interface
     /**
      * Gets the current page of items
      *
-     * @param string $offset
-     * @param string $itemCountPerPage
+     * @param  string $offset
+     * @param  string $itemCountPerPage
      * @return void
      * @author David Abdemoulaie
      */
@@ -144,7 +144,7 @@ class PaginationAdapter implements \Zend_Paginator_Adapter_Interface
     }
 
     /**
-     * @param Query $query
+     * @param  Query $query
      * @return int
      */
     public function count()
@@ -154,6 +154,7 @@ class PaginationAdapter implements \Zend_Paginator_Adapter_Interface
                 $this->createCountQuery()
             );
         }
+
         return $this->rowCount;
     }
 
