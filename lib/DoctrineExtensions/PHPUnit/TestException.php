@@ -15,5 +15,5 @@ namespace DoctrineExtensions\PHPUnit;
 
 class TestException extends \Exception
 {
-    
+
 }

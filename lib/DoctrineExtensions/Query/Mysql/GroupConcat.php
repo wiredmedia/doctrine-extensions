@@ -36,11 +36,11 @@ class GroupConcat extends FunctionNode
 
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
-        
+
         $lexer = $parser->getLexer();
         if ($lexer->isNextToken(Lexer::T_DISTINCT)) {
             $parser->match(Lexer::T_DISTINCT);
-            
+
             $this->isDistinct = true;
         }
 

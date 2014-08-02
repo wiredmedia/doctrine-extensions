@@ -13,8 +13,6 @@
 
 namespace DoctrineExtensions\LargeCollections;
 
-use Doctrine\Common\Util\Debug;
-
 class LargeCollectionTest extends \PHPUnit_Framework_TestCase
 {
     private $articleId;
@@ -102,7 +100,7 @@ class LargeCollectionTest extends \PHPUnit_Framework_TestCase
         $tag2 = new Tag();
         $comment1 = new Comment();
         $comment2 = new Comment();
-        
+
         $article->addComment($comment1);
         $article->addComment($comment2);
         $article->addTag($tag1);

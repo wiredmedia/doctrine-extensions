@@ -44,7 +44,7 @@ class LimitSubqueryWalker extends TreeWalkerAdapter
      * Walks down a SelectStatement AST node, modifying it to retrieve DISTINCT ids
      * of the root Entity
      *
-     * @param SelectStatement $AST
+     * @param  SelectStatement $AST
      * @return void
      */
     public function walkSelectStatement(SelectStatement $AST)
@@ -53,7 +53,7 @@ class LimitSubqueryWalker extends TreeWalkerAdapter
         $parentName = null;
         $selectExpressions = array();
 
-        foreach ($this->_getQueryComponents() AS $dqlAlias => $qComp) {
+        foreach ($this->_getQueryComponents() as $dqlAlias => $qComp) {
             // preserve mixed data in query for ordering
             if (isset($qComp['resultVariable'])) {
                 $selectExpressions[] = new SelectExpression($qComp['resultVariable'], $dqlAlias);

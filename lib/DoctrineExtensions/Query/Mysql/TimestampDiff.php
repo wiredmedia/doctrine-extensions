@@ -18,17 +18,17 @@ use Doctrine\ORM\Query\Lexer;
 
 /**
  * Usage: TIMESTAMPDIFF(unit, expr1, expr2)
- * 
+ *
  * Returns expr2 – expr1, where expr1 and expr2 are date or datetime expressions.
- * One expression may be a date and the other a datetime; a date value is treated 
- * as a datetime having the time part '00:00:00' where necessary. 
- * The unit for the result (an integer) is given by the unit argument, which 
- * should be one of the following values: FRAC_SECOND (microseconds), SECOND, 
+ * One expression may be a date and the other a datetime; a date value is treated
+ * as a datetime having the time part '00:00:00' where necessary.
+ * The unit for the result (an integer) is given by the unit argument, which
+ * should be one of the following values: FRAC_SECOND (microseconds), SECOND,
  * MINUTE, HOUR, DAY, WEEK, MONTH, QUARTER, or YEAR.
- * 
+ *
  * @author Przemek Sobstel <przemek@sobstel.org>
  */
-class TimestampDiff extends FunctionNode 
+class TimestampDiff extends FunctionNode
 {
   public $firstDatetimeExpression = null;
   public $secondDatetimeExpression = null;

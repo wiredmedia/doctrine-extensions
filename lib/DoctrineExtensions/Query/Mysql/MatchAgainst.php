@@ -23,8 +23,8 @@ use Doctrine\ORM\Query\SqlWalker;
  *  "MATCH" "(" StateFieldPathExpression {"," StateFieldPathExpression}* ")" "AGAINST" "("
  *      StringPrimary ["BOOLEAN"] ["EXPAND"] ")"
  */
-class MatchAgainst extends FunctionNode {
-
+class MatchAgainst extends FunctionNode
+{
   /** @var array list of \Doctrine\ORM\Query\AST\PathExpression */
   protected $pathExp = null;
 
@@ -37,7 +37,8 @@ class MatchAgainst extends FunctionNode {
   /** @var boolean */
   protected $queryExpansion = false;
 
-  public function parse(Parser $parser) {
+  public function parse(Parser $parser)
+  {
     // match
     $parser->match(Lexer::T_IDENTIFIER);
     $parser->match(Lexer::T_OPEN_PARENTHESIS);
@@ -48,9 +49,9 @@ class MatchAgainst extends FunctionNode {
 
     // Subsequent Path Expressions are optional
     $lexer = $parser->getLexer();
-    while ($lexer->isNextToken(Lexer::T_COMMA)) { 
-      $parser->match(Lexer::T_COMMA); 
-      $this->pathExp[] = $parser->StateFieldPathExpression(); 
+    while ($lexer->isNextToken(Lexer::T_COMMA)) {
+      $parser->match(Lexer::T_COMMA);
+      $this->pathExp[] = $parser->StateFieldPathExpression();
     }
 
     $parser->match(Lexer::T_CLOSE_PARENTHESIS);
@@ -77,7 +78,8 @@ class MatchAgainst extends FunctionNode {
     $parser->match(Lexer::T_CLOSE_PARENTHESIS);
   }
 
-  public function getSql(SqlWalker $walker) {
+  public function getSql(SqlWalker $walker)
+  {
     $fields = array();
     foreach ($this->pathExp as $pathExp) {
       $fields[] = $pathExp->dispatch($walker);

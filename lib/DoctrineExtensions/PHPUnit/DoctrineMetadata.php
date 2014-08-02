@@ -40,7 +40,7 @@ class DoctrineMetadata implements \PHPUnit_Extensions_Database_DB_IMetaData
         if ($this->_tables === null) {
             $tables = $this->_sm->listTables();
             $this->_tables = array();
-            foreach ($tables AS $table) {
+            foreach ($tables as $table) {
                 $this->_tables[strtolower($table->getName())] = $table;
             }
         }
@@ -56,9 +56,10 @@ class DoctrineMetadata implements \PHPUnit_Extensions_Database_DB_IMetaData
         $this->_loadTables();
 
         $tableNames = array();
-        foreach ((array)$this->_tables AS $table) {
+        foreach ((array) $this->_tables as $table) {
             $tableNames[] = $table->getName();
         }
+
         return $tableNames;
     }
 
@@ -66,15 +67,15 @@ class DoctrineMetadata implements \PHPUnit_Extensions_Database_DB_IMetaData
      * Returns an array containing the names of all the columns in the
      * $tableName table,
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTableColumns($tableName)
     {
         $table = $this->_getTable($tableName);
-        
+
         $columnNames = array();
-        foreach ($table->getColumns() AS $column) {
+        foreach ($table->getColumns() as $column) {
             $columnNames[] = $column->getName();
         }
 
@@ -97,7 +98,7 @@ class DoctrineMetadata implements \PHPUnit_Extensions_Database_DB_IMetaData
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTablePrimaryKeys($tableName)
@@ -123,7 +124,7 @@ class DoctrineMetadata implements \PHPUnit_Extensions_Database_DB_IMetaData
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param string $object
+     * @param  string $object
      * @return string
      */
     public function quoteSchemaObject($object)

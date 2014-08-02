@@ -15,17 +15,17 @@ namespace DoctrineExtensions\Versionable;
 
 class Exception extends \Exception
 {
-    static public function versionedEntityRequired()
+    public static function versionedEntityRequired()
     {
         return new self("A versioned entity is required if implementing DoctrineExtnsions\Versionable\Versionable interface.");
     }
 
-    static public function singleIdentifierRequired()
+    public static function singleIdentifierRequired()
     {
         return new self('A single identifier column is required for the Versionable extension.');
     }
 
-    static public function unknownVersion($version)
+    public static function unknownVersion($version)
     {
         return new self('Trying to access an unknown version '.$version.'.');
     }

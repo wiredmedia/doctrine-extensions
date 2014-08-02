@@ -32,17 +32,17 @@ use DoctrineExtensions\PHPUnit\Event\EntityManagerEventArgs;
  */
 class ZendDateTest extends OrmTestCase
 {
-    public static function setUpBeforeClass() 
+    public static function setUpBeforeClass()
     {
-        \Doctrine\DBAL\Types\Type::addType('zenddate', 
+        \Doctrine\DBAL\Types\Type::addType('zenddate',
             'DoctrineExtensions\Types\ZendDateType'
         );
     }
-     
-    protected function createEntityManager() 
+
+    protected function createEntityManager()
     {
-    	$eventManager = new EventManager();
-    	$eventManager->addEventListener(array('preTestSetUp'), $this);
+        $eventManager = new EventManager();
+        $eventManager->addEventListener(array('preTestSetUp'), $this);
 
         $config = new \Doctrine\ORM\Configuration();
         $config->setMetadataDriverImpl($config->newDefaultAnnotationDriver());
@@ -50,53 +50,53 @@ class ZendDateTest extends OrmTestCase
         $config->setQueryCacheImpl(new \Doctrine\Common\Cache\ArrayCache);
         $config->setProxyDir(__DIR__ . '/Proxies');
         $config->setProxyNamespace('DoctrineExtensions\Types\Proxies');
-       
+
         $conn = array(
             'driver' => 'pdo_sqlite',
             'memory' => true,
         );
 
-	    return EntityManager::create($conn, $config, $eventManager);
+        return EntityManager::create($conn, $config, $eventManager);
     }
 
     public function getDataSet()
     {
-        return $this->createFlatXMLDataSet(__DIR__ . '/_files/fixture.xml'); 
+        return $this->createFlatXMLDataSet(__DIR__ . '/_files/fixture.xml');
     }
-    
+
     public function preTestSetUp(EntityManagerEventArgs $eventArgs)
     {
-    	$em = $eventArgs->getEntityManager();
+        $em = $eventArgs->getEntityManager();
 
         $classes = array(
             $em->getClassMetadata(__NAMESPACE__ . '\Date'),
         );
-        
-    	$schemaTool = new SchemaTool($em);
+
+        $schemaTool = new SchemaTool($em);
         $schemaTool->dropDatabase();
-    	$schemaTool->createSchema($classes);
+        $schemaTool->createSchema($classes);
     }
-    
+
     public function testGetZendDate()
     {
-        $em = $this->getEntityManager(); 
-        
+        $em = $this->getEntityManager();
+
         $compareDate = new \Zend_Date(
             array('year' => 2012, 'month' => 11, 'day' => 10,
                   'hour' => 9, 'minute' => 8, 'second' => 7)
         );
-        
+
         $date = $em->find('DoctrineExtensions\Types\Date', 1);
         $zendDate = $date->date;
-        
+
         $this->assertTrue($zendDate instanceof \Zend_Date);
         $this->assertTrue($zendDate->equals($compareDate));
     }
-    
+
     public function testSetZendDate()
     {
-        $em = $this->getEntityManager(); 
-        
+        $em = $this->getEntityManager();
+
         $compareDate = new \Zend_Date(
             array('year' => 2012, 'month' => 11, 'day' => 10,
                   'hour' => 9, 'minute' => 8, 'second' => 7)
@@ -104,18 +104,18 @@ class ZendDateTest extends OrmTestCase
         $date = new Date(2, $compareDate);
         $em->persist($date);
         $em->flush();
-        
+
         $date = $em->find('DoctrineExtensions\Types\Date', 2);
         $zendDate = $date->date;
-        
+
         $this->assertTrue($zendDate instanceof \Zend_Date);
-        $this->assertTrue($zendDate->equals($compareDate)); 
+        $this->assertTrue($zendDate->equals($compareDate));
     }
 }
 
 /**
  * @Entity
- * @Table(name="dates") 
+ * @Table(name="dates")
  */
 class Date
 {
@@ -129,10 +129,10 @@ class Date
      * @Column(type="zenddate")
      */
     public $date;
-    
-    public function __construct($id, $date) 
+
+    public function __construct($id, $date)
     {
         $this->id = $id;
-        $this->date = $date;    
+        $this->date = $date;
     }
 }

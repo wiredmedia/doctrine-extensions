@@ -19,7 +19,7 @@ use Doctrine\ORM\Query\AST\Functions\FunctionNode,
 
 /**
  * "CHAR_LENGTH" "(" SimpleArithmeticExpression ")"
- * 
+ *
  * @category DoctrineExtensions
  * @package  DoctrineExtensions\Query\Mysql
  * @author   Metod <metod@simpel.si>
@@ -28,7 +28,7 @@ use Doctrine\ORM\Query\AST\Functions\FunctionNode,
 class CharLength extends FunctionNode
 {
     private $expr;
-	
+
     /**
      * @override
      */
@@ -36,12 +36,12 @@ class CharLength extends FunctionNode
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
-        
+
         $this->expr1 = $parser->ArithmeticExpression();
-        
+
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
-	
+
     /**
      * @override
      */

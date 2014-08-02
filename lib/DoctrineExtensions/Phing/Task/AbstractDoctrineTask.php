@@ -18,7 +18,7 @@ abstract class AbstractDoctrineTask extends \Task
     /**
      * @var \Doctrine\Common\Cli\Configuration
      */
-    static protected $cliConfig = null;
+    protected static $cliConfig = null;
 
     protected $cliConfigFile = "cli-config.php";
 
@@ -47,7 +47,7 @@ abstract class AbstractDoctrineTask extends \Task
     }
 
     /**
-     * @param Configuration $cliConfig
+     * @param  Configuration $cliConfig
      * @return void
      */
     abstract protected function _doRun(\Doctrine\Common\Cli\Configuration $cliConfig);

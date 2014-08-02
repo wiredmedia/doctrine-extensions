@@ -27,14 +27,14 @@ class VersionListener implements EventSubscriber
         /* @var $resourceClass Doctrine\ORM\Mapping\ClassMetadata */
         $resourceClass = $em->getClassMetadata('DoctrineExtensions\Versionable\Entity\ResourceVersion');
 
-        foreach ($uow->getScheduledEntityUpdates() AS $entity) {
+        foreach ($uow->getScheduledEntityUpdates() as $entity) {
             if ($entity instanceof Versionable) {
                 $entityClass = $em->getClassMetadata(get_class($entity));
 
                 if (!$entityClass->isVersioned) {
                     throw Exception::versionedEntityRequired();
                 }
-                
+
                 $entityId = $entityClass->getIdentifierValues($entity);
                 if (count($entityId) == 1 && current($entityId)) {
                     $entityId = current($entityId);
@@ -42,7 +42,7 @@ class VersionListener implements EventSubscriber
                     throw Exception::singleIdentifierRequired();
                 }
 
-                $oldValues = array_map(function($changeSetField) {
+                $oldValues = array_map(function ($changeSetField) {
                     return $changeSetField[0];
                 }, $uow->getEntityChangeSet($entity));
 

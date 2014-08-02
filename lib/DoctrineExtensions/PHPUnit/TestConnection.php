@@ -42,27 +42,28 @@ class TestConnection implements \PHPUnit_Extensions_Database_DB_IDatabaseConnect
      * names are specified then it will created a dataset over the entire
      * database.
      *
-     * @param array $tableNames
+     * @param  array                                        $tableNames
      * @return PHPUnit_Extensions_Database_DataSet_IDataSet
      */
-    public function createDataSet(Array $tableNames = NULL)
+    public function createDataSet(array $tableNames = null)
     {
         $ds = new DataSet\QueryDataSet($this);
         if (!is_array($tableNames)) {
             $tableNames = $this->getMetaData()->getTableNames();
         }
 
-        foreach ($tableNames AS $tableName) {
+        foreach ($tableNames as $tableName) {
             $ds->addTable($tableName);
         }
+
         return $ds;
     }
 
     /**
      * Creates a table with the result of the specified SQL statement.
      *
-     * @param string $tableName
-     * @param string $sql
+     * @param  string                                     $tableName
+     * @param  string                                     $sql
      * @return PHPUnit_Extensions_Database_DataSet_ITable
      */
     public function createQueryTable($tableName, $sql)
@@ -103,7 +104,7 @@ class TestConnection implements \PHPUnit_Extensions_Database_DB_IDatabaseConnect
      * @param string $whereClause
      * @param int
      */
-    public function getRowCount($tableName, $whereClause = NULL)
+    public function getRowCount($tableName, $whereClause = null)
     {
         $sql = "SELECT count(*) FROM ".$tableName;
         if ($whereClause !== null) {
@@ -126,7 +127,7 @@ class TestConnection implements \PHPUnit_Extensions_Database_DB_IDatabaseConnect
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param string $object
+     * @param  string $object
      * @return string
      */
     public function quoteSchemaObject($object)

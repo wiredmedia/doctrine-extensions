@@ -1,10 +1,10 @@
 <?php
 
 use
-	Doctrine\Common\ClassLoader,
-	Doctrine\Common\Cache,
-	Doctrine\ORM\Configuration,
-	Doctrine\ORM\EntityManager
+    Doctrine\Common\ClassLoader,
+    Doctrine\Common\Cache,
+    Doctrine\ORM\Configuration,
+    Doctrine\ORM\EntityManager
 ;
 
 if (!isset($GLOBALS['doctrine2-path'])) {
@@ -13,7 +13,7 @@ if (!isset($GLOBALS['doctrine2-path'])) {
 
 $loaderfile = $GLOBALS['doctrine2-path']."/Doctrine/Common/ClassLoader.php";
 if (!file_exists($loaderfile)) {
-	throw new InvalidArgumentException('Could not include Doctrine\Common\ClassLoader from "doctrine2-path".');
+    throw new InvalidArgumentException('Could not include Doctrine\Common\ClassLoader from "doctrine2-path".');
 }
 require_once($loaderfile);
 

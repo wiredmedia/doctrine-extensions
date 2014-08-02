@@ -24,7 +24,6 @@ class Radians extends FunctionNode
 
     public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
     {
-
         return 'RADIANS(' . $sqlWalker->walkSimpleArithmeticExpression(
                 $this->arithmeticExpression
         ) . ')';

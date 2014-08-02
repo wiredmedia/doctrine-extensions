@@ -19,11 +19,11 @@ use Doctrine\ORM\Query\AST\Functions\FunctionNode,
 
 /**
  * Usage: IF(expr1, expr2, expr3)
- * 
+ *
  * If expr1 is TRUE (expr1 <> 0 and expr1 <> NULL) then IF() returns expr2;
  * otherwise it returns expr3. IF() returns a numeric or string value,
- * depending on the context in which it is used. 
- * 
+ * depending on the context in which it is used.
+ *
  * @author  Andrew Mackrodt <andrew@ajmm.org>
  * @version 2011.06.19
  */
@@ -36,9 +36,8 @@ class IfElse extends FunctionNode
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
         $this->expr[] = $parser->ConditionalExpression();
-        
-        for ($i = 0; $i < 2; $i++)
-        {
+
+        for ($i = 0; $i < 2; $i++) {
             $parser->match(Lexer::T_COMMA);
             $this->expr[] = $parser->ArithmeticExpression();
         }

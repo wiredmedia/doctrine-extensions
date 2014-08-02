@@ -13,7 +13,7 @@
 
 namespace DoctrineExtensions\Phing\Task;
 
-require_once "AbstractDoctrineTask.php";
+require_once 'AbstractDoctrineTask.php';
 
 class InstallSql extends AbstractDoctrineTask
 {
@@ -26,7 +26,8 @@ class InstallSql extends AbstractDoctrineTask
      */
     private $installSqlFile = null;
 
-    public function setInstallSqlFile($installSqlFile) {
+    public function setInstallSqlFile($installSqlFile)
+    {
         $this->installSqlFile = $installSqlFile;
     }
 

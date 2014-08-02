@@ -24,7 +24,6 @@ class Degrees extends FunctionNode
 
     public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
     {
-
         return 'DEGREES(' . $sqlWalker->walkSimpleArithmeticExpression(
                 $this->arithmeticExpression
         ) . ')';

@@ -27,7 +27,7 @@ abstract class OrmTestCase extends DatabaseTestCase
      */
     protected function setUp()
     {
-        $this->databaseTester = NULL;
+        $this->databaseTester = null;
 
         $em = $this->getEntityManager();
         $eventManager = $em->getEventManager();
@@ -49,13 +49,14 @@ abstract class OrmTestCase extends DatabaseTestCase
     /**
      * @return Doctrine\ORM\EntityManager
      */
-    protected final function getEntityManager()
+    final protected function getEntityManager()
     {
         if ($this->_em == null) {
             $this->_em = $this->createEntityManager();
             $this->assertInstanceOf('Doctrine\ORM\EntityManager', $this->_em,
                 "Not a valid Doctrine\ORM\EntityManager returned from createEntityManager() method.");
         }
+
         return $this->_em;
     }
 
@@ -70,6 +71,7 @@ abstract class OrmTestCase extends DatabaseTestCase
     final protected function getDoctrineConnection()
     {
         $em = $this->getEntityManager();
+
         return $em->getConnection();
     }
 

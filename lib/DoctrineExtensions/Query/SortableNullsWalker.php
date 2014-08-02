@@ -26,7 +26,7 @@
  * See: http://www.doctrine-project.org/jira/browse/DDC-490
  *
  * LICENSE
- * 
+ *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * If you did not receive a copy of the license and are unable to

@@ -13,13 +13,13 @@
 
 namespace DoctrineExtensions\PHPUnit\Operations;
 
-use PHPUnit_Extensions_Database_Operation_IDatabaseOperation AS IDatabaseOperation;
+use PHPUnit_Extensions_Database_Operation_IDatabaseOperation as IDatabaseOperation;
 
 class Truncate implements IDatabaseOperation
 {
-    protected $useCascade = FALSE;
+    protected $useCascade = false;
 
-    public function setCascade($cascade = TRUE)
+    public function setCascade($cascade = true)
     {
         $this->useCascade = $cascade;
     }

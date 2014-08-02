@@ -14,7 +14,7 @@
 namespace DoctrineExtensions\PHPUnit;
 use DoctrineExtensions\PHPUnit\Operations\Truncate;
 
-require_once "PHPUnit/Extensions/Database/TestCase.php";
+require_once 'PHPUnit/Extensions/Database/TestCase.php';
 require_once 'PHPUnit/Extensions/Database/DataSet/QueryDataSet.php';
 require_once 'PHPUnit/Extensions/Database/DataSet/QueryTable.php';
 
@@ -38,6 +38,7 @@ abstract class DatabaseTestCase extends \PHPUnit_Extensions_Database_TestCase
         if (self::$_connection == null) {
             self::$_connection = new TestConnection($this->getDoctrineConnection());
         }
+
         return self::$_connection;
     }
 
@@ -55,7 +56,7 @@ abstract class DatabaseTestCase extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @param array $tableNames
+     * @param  array                                             $tableNames
      * @return \PHPUnit_Extensions_Database_DataSet_QueryDataSet
      */
     protected function createQueryDataSet(array $tableNames = null)
@@ -64,8 +65,8 @@ abstract class DatabaseTestCase extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * @param  string $tableName
-     * @param  string $sql
+     * @param  string                                          $tableName
+     * @param  string                                          $sql
      * @return \PHPUnit_Extensions_Database_DataSet_QueryTable
      */
     protected function createQueryDataTable($tableName, $sql = null)

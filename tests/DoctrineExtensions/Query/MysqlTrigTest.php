@@ -2,8 +2,6 @@
 
 namespace DoctrineExtnsions\Query;
 
-use Doctrine\ORM\Query\Parser;
-
 class MysqlTrigTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -234,7 +232,6 @@ class MysqlTrigTest extends \PHPUnit_Framework_TestCase
 
     protected function _getFirstSqlQuery($func)
     {
-
         return "SELECT b0_.id AS id0, b0_.created AS created1, "
         . "b0_.longitude AS longitude2, b0_.latitude AS latitude3 "
         . "FROM BlogPost b0_ WHERE " . $func . "(b0_.latitude) = 1";
@@ -244,12 +241,12 @@ class MysqlTrigTest extends \PHPUnit_Framework_TestCase
     {
 
         $dql = "SELECT " . $func . "(p.latitude) FROM Entities\BlogPost p";
+
         return $this->entityManager->createQuery($dql);
     }
 
     protected function _getSecondSqlQuery($func)
     {
-
         return "SELECT " . $func . "(b0_.latitude) AS sclr0 FROM BlogPost b0_";
     }
 

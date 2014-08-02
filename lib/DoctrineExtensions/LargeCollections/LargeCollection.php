@@ -38,7 +38,7 @@ class LargeCollection
     }
 
     /**
-     * @param Collection $collection
+     * @param  Collection $collection
      * @return int
      */
     public function count(Collection $collection)
@@ -61,6 +61,7 @@ class LargeCollection
             $query = $em->createQuery($dql);
 
             $this->setParameters($collection, $query);
+
             return $query->getSingleScalarResult();
         } else {
             return count($collection);
@@ -69,10 +70,10 @@ class LargeCollection
 
     /**
      * Return the slice from any given collection, using optimized queries for unitialized PersistentCollections.
-     * 
-     * @param Collection $collection
-     * @param int $limit
-     * @param int $offset
+     *
+     * @param  Collection $collection
+     * @param  int        $limit
+     * @param  int        $offset
      * @return array
      */
     public function getSlice(Collection $collection, $limit, $offset = 0)
@@ -89,9 +90,9 @@ class LargeCollection
     /**
      * Return a Query instance to retrieve a slice of the given limit and offset from a persistent collection.
      *
-     * @param PersistentCollection $collection
-     * @param int $limit
-     * @param int $offset
+     * @param  PersistentCollection $collection
+     * @param  int                  $limit
+     * @param  int                  $offset
      * @return \Doctrine\ORM\Query
      */
     public function getSliceQuery(PersistentCollection $collection, $limit, $offset = 0)
@@ -125,9 +126,10 @@ class LargeCollection
     private function getWhereConditions($sourceMetadata)
     {
         $i = 0;
-        $whereConditions = array_map(function($fieldName) use(&$i) {
+        $whereConditions = array_map(function ($fieldName) use (&$i) {
             return 'o.' . $fieldName . ' = ?' . ++$i;
         }, $sourceMetadata->identifier);
+
         return implode(" AND ", $whereConditions);
     }
 
@@ -136,7 +138,7 @@ class LargeCollection
         $em = $this->getEntityManager($collection);
 
         $i = 0;
-        foreach ($em->getUnitOfWork()->getEntityIdentifier($collection->getOwner()) AS $value) {
+        foreach ($em->getUnitOfWork()->getEntityIdentifier($collection->getOwner()) as $value) {
             $query->setParameter(++$i, $value);
         }
     }

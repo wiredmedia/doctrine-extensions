@@ -32,29 +32,29 @@ class TableLocking implements EventSubscriber
         $uow = $em->getUnitOfWork();
 
         $affectedTables = array();
-        foreach ($uow->getScheduledEntityInsertions() AS $entity) {
+        foreach ($uow->getScheduledEntityInsertions() as $entity) {
             $table = $em->getClassMetadata(get_class($entity))->getTableName();
             $affectedTables[$table] = true;
         }
 
-        foreach ($uow->getScheduledEntityUpdates() AS $entity) {
+        foreach ($uow->getScheduledEntityUpdates() as $entity) {
             $table = $em->getClassMetadata(get_class($entity))->getTableName();
             $affectedTables[$table] = true;
         }
 
-        foreach ($uow->getScheduledEntityDeletions() AS $entity) {
+        foreach ($uow->getScheduledEntityDeletions() as $entity) {
             $table = $em->getClassMetadata(get_class($entity))->getTableName();
             $affectedTables[$table] = true;
         }
 
-        foreach ($uow->getScheduledCollectionDeletions() AS $collection) {
+        foreach ($uow->getScheduledCollectionDeletions() as $collection) {
             $mapping = $collection->getMapping();
             if ($mapping->isManyToMany()) {
                 $affectedTables[$mapping->joinTable['name']] = true;
             }
         }
 
-        foreach ($uow->getScheduledCollectionUpdates() AS $collection) {
+        foreach ($uow->getScheduledCollectionUpdates() as $collection) {
             $mapping = $collection->getMapping();
             if ($mapping->isManyToMany()) {
                 $affectedTables[$mapping->joinTable['name']] = true;
@@ -64,7 +64,7 @@ class TableLocking implements EventSubscriber
         $affectedTables = array_flip($affectedTables);
 
         $tablesSql = '';
-        foreach ($affectedTables AS $tableName) {
+        foreach ($affectedTables as $tableName) {
             if ($tablesSql != '') {
                 $tablesSql .= ', ';
             }

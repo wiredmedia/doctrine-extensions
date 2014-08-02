@@ -19,10 +19,10 @@ use Doctrine\ORM\Query\AST\Functions\FunctionNode,
 
 /**
  * Usage: NULLIF(expr1, expr2)
- * 
+ *
  * Returns NULL if expr1 = expr2 is true, otherwise returns expr1. This is the
- * same as CASE WHEN expr1 = expr2 THEN NULL ELSE expr1 END. 
- * 
+ * same as CASE WHEN expr1 = expr2 THEN NULL ELSE expr1 END.
+ *
  * @author  Andrew Mackrodt <andrew@ajmm.org>
  * @version 2011.06.12
  */

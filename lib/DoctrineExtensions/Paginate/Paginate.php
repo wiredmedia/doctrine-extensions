@@ -6,10 +6,10 @@ use Doctrine\ORM\Query;
 class Paginate
 {
     /**
-     * @param Query $query
+     * @param  Query $query
      * @return Query
      */
-    static protected function cloneQuery(Query $query)
+    protected static function cloneQuery(Query $query)
     {
         /* @var $countQuery Query */
         $countQuery = clone $query;
@@ -20,22 +20,22 @@ class Paginate
         }
 
         return $countQuery;
-    } 
+    }
 
     /**
-     * @param Query $query
+     * @param  Query $query
      * @return int
      */
-    static public function count(Query $query)
+    public static function count(Query $query)
     {
         return self::createCountQuery($query)->getSingleScalarResult();
     }
 
     /**
-     * @param Query $query
+     * @param  Query $query
      * @return int
      */
-    static public function getTotalQueryResults(Query $query)
+    public static function getTotalQueryResults(Query $query)
     {
         return self::createCountQuery($query)->getSingleScalarResult();
     }
@@ -43,10 +43,10 @@ class Paginate
     /**
      * Given the Query it returns a new query that is a paginatable query using a modified subselect.
      *
-     * @param Query $query
+     * @param  Query $query
      * @return Query
      */
-    static public function getPaginateQuery(Query $query, $offset, $itemCountPerPage)
+    public static function getPaginateQuery(Query $query, $offset, $itemCountPerPage)
     {
         $ids = array_map('current', self::createLimitSubQuery($query, $offset, $itemCountPerPage)->getScalarResult());
 
@@ -54,44 +54,46 @@ class Paginate
     }
 
     /**
-     * @param Query $query
+     * @param  Query $query
      * @return Query
      */
-    static public function createCountQuery(Query $query)
+    public static function createCountQuery(Query $query)
     {
         /* @var $countQuery Query */
         $countQuery = self::cloneQuery($query);
 
         $countQuery->setHint(Query::HINT_CUSTOM_TREE_WALKERS, array('DoctrineExtensions\Paginate\CountWalker'));
         $countQuery->setFirstResult(null)->setMaxResults(null);
-        
+
         $countQuery->setParameters($query->getParameters());
+
         return $countQuery;
     }
 
     /**
-     * @param Query $query
-     * @param int $offset
-     * @param int $itemCountPerPage
+     * @param  Query $query
+     * @param  int   $offset
+     * @param  int   $itemCountPerPage
      * @return Query
      */
-    static public function createLimitSubQuery(Query $query, $offset, $itemCountPerPage)
+    public static function createLimitSubQuery(Query $query, $offset, $itemCountPerPage)
     {
         $subQuery = self::cloneQuery($query);
         $subQuery->setHint(Query::HINT_CUSTOM_TREE_WALKERS, array('DoctrineExtensions\Paginate\LimitSubqueryWalker'))
             ->setFirstResult($offset)
             ->setMaxResults($itemCountPerPage);
         $subQuery->setParameters($query->getParameters());
+
         return $subQuery;
     }
 
     /**
-     * @param Query $query
-     * @param array $ids
-     * @param string $namespace
+     * @param  Query  $query
+     * @param  array  $ids
+     * @param  string $namespace
      * @return Query
      */
-    static public function createWhereInQuery(Query $query, array $ids, $namespace = 'pgid')
+    public static function createWhereInQuery(Query $query, array $ids, $namespace = 'pgid')
     {
         // don't do this for an empty id array
         if (count($ids) == 0) {
@@ -110,6 +112,7 @@ class Paginate
             $i = $i+1;
             $whereInQuery->setParameter("{$namespace}_{$i}", $id);
         }
+
         return $whereInQuery;
     }
 }
