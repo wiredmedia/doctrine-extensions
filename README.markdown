@@ -276,6 +276,3 @@ $versionManager->revert($blogPost, 100);
 $em->flush();
 ```
 >>>>>>> marijn/patch-1
-
-### Forked by
-Wired Media - https://www.wiredmedia.co.uk
